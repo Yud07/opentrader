@@ -1,0 +1,4 @@
+1.Anaconda Prompt
+2. Create env
+	a. conda create -n OpenTrader
+	b. conda activate OpenTrader
