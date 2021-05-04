@@ -1,6 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 import datetime
+import yaml
+from selenium.webdriver import Firefox
+from selenium.webdriver.firefox.options import Options
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 
 # wanted features
 # - database to compare/notice changes
@@ -37,7 +42,13 @@ import datetime
 
 
 def main():
-  print("Open Trader 0.01")
+  print("Open Trader 0.02")
+
+  # load yaml portfolio
+  #stream = open("Portfolios\MyPortfolio.yaml", "r")
+  stream = open("Portfolios\MegaCaps.yaml", "r")
+  dictionary = yaml.load(stream, Loader=yaml.CLoader)
+  #print (dictionary.items())
 
   my_portfolio = ["ETHE", "GBTC", "TSLA", "AMZN", "FB", "GOOGL", "ASML", "NVDA", "NFLX", "MSFT", "BABA", "AAPL", "TCEHY", "AMD", "PLTR"]
   megacaps = ["AAPL", "MSFT", "AMZN", "GOOGL", "FB", "TCEHY", "TSLA", "BABA", "TSM", "V", "JPM", "JNJ", "WMT", "UNH", "LVMUY", "MA", "HD", "NVDA", "BAC", "NSRGY", "DIS", "PG", "PYPL", "RHHBY", "CMCSA", "ASML", "XOM", "VZ", "ADBE", "KO", "MPNGF", "T", "INTC", "ORCL", "PFE", "CSCO", "ABT", "TM", "NKE", "ABBV", "CVX", "PEP", "CRM", "PNGAY", "CICHY", "MRK", "NVS", "WFC", "UPS", "ACN", "BHP"]
@@ -46,8 +57,13 @@ def main():
   #commodities = ["Gold", "Silver", "Gas", "Copper"]
   #"10 yr"
   #"ETH"
+
   zacks_ranks = ["Error", "Great", "Good", "Neutral", "Bad" , "Terrible"]
-  maketwatch_ranks = ["Error", "Sell", "Hold", "Buy", "Strong Buy"]
+
+  # setup headless firefox
+  opts = Options()
+  opts.add_argument("--headless")
+  browser = Firefox(options=opts)
 
   #check_marketbeat_analysts("AMC", "NYSE")
   #check_tradingview_large_caps(tickers)
@@ -57,24 +73,28 @@ def main():
   #check_tradingview("PLTR", "NYSE")
   #check_tradingview_sector("GBTC", "miscellaneous")
 
+  #check_tradingview(browser, "ETHE", "OTC")
+  #check_tradingview(browser, "PLTR", "NYSE")
+  #check_tradingview(browser, "FB", "NASDAQ")
+
   if True:
-    for t in megacaps:      
+    for t, content in dictionary.items():
+      exchange = content['exchange']
       print(t + " " + str(check_marketwatch_price(t)) + "\t" + check_marketwatch_daily_change(t))
-      if t == "TSM" or t == "BABA" or t == "MA" or t == "PLTR":
-        print("TradingView has " + t + "\t" + zacks_ranks[1 + check_tradingview_large_caps(t, "NYSE")])
-        check_marketbeat_analysts(t, "NYSE")
-      else:
-        print("TradingView has " + t + "\t" + zacks_ranks[1 + check_tradingview_large_caps(t, "NASDAQ")])
-        check_marketbeat_analysts(t, "NASDAQ")
+      tradingview_result = -1
+      try:
+        tradingview_exchange = content['tradingview_exchange']
+        tradingview_result = check_tradingview(browser, t, tradingview_exchange)
+      except:
+        tradingview_result = check_tradingview(browser, t, exchange)
+      print("TradingView has " + t + "\t" + zacks_ranks[1 + tradingview_result])
+      check_marketbeat_analysts(t, exchange)
       check_pretiming(t)
       print("Zacks thinks " + t + " is\t" + zacks_ranks[check_zacks(t)])
       print()
 
-# <section id="quote_ribbon_v2" class="stock_ribbon_view">
-  # <div class="quote_rank_summary">
-    # <div class="zr_rankbox">
-      # <p class="rank_view">
-        # <span class="rank_chip rankrect_3">3</span>
+  browser.close()
+
 def check_zacks(ticker):
   zacks_url = "https://www.zacks.com/stock/quote/" + ticker
   headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
@@ -97,6 +117,7 @@ def check_zacks(ticker):
   return int(result)
 
 def check_marketbeat_analysts(ticker, exchange):
+  # OTC -> OTCMKTS
   marketbeat_analysts_url = "http://www.marketbeat.com/stocks/" + exchange + "/" + ticker + "/price-target/"
   headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
   html_text = requests.get(marketbeat_analysts_url, headers=headers).text
@@ -156,9 +177,16 @@ def check_marketbeat_analysts(ticker, exchange):
             j = j + 1
       i = i + 1
 
-    print(ticker + " has a rating of\t" + rating_string + " " + rating_val_string + " from " + str(num_ratings) + " ratings. Target: " + price_target_string + " " + upside_string)
+    print(ticker + " has a rating of\t" + rating_string + " from " + str(num_ratings) + " ratings. Target: " + price_target_string + " " + upside_string)
 
   return result
+
+#def check_tradingview(ticker, exchange):
+#  if exchange == "OTC":
+#    if ticker == "GBTC" or ticker == "ETHE":
+#      check_tradingview(ticker)
+#  else:
+#    check_tradingview_large_caps(ticker, exchange)
 
 def check_tradingview_large_caps(ticker, exchange):
   url = "https://www.tradingview.com/markets/stocks-usa/market-movers-large-cap/"
@@ -182,17 +210,56 @@ def check_tradingview_large_caps(ticker, exchange):
     #print(str(i) + " " + str(rating))
   return result
 
-def check_tradingview_index(ticker):
-  url = "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-sector/" + sector
-  headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-  html_text = requests.get(url, headers=headers).text
-  soup = BeautifulSoup(html_text, 'html.parser')
+def check_tradingview(browser, ticker, exchange):
+  browser.get("https://www.tradingview.com/symbols/" + exchange + "-" + ticker + "/technicals/")
+  #browser.save_screenshot("screenshot.png")
+  #img = mpimg.imread("screenshot.png")
+  #imgplot = plt.imshow(img)
+  #plt.show()
 
-  print(soup)
+  #name = "tv-content-header"
+  name = "speedometersContainer-DPgs-R4s"
+  #name = "speedometerSignal-DPgs-R4s buyColor-DPgs-R4s"
+  try:
+    element = browser.find_element_by_class_name(name)
+  except:
+    return -1
+  if element is not None:
+    text = element.text
+    #location = element.location
+    #size = element.size
 
-  soup_string = str(soup)
-  technicals_root = soup.find("div", {"id":"technicals-root"})
+    #print(text)
 
+    split_text = text.split("\n")
+
+    ranks = ["STRONG BUY", "BUY", "NEUTRAL", "SELL", "STRONG SELL"]
+
+    oscillators = split_text[6]
+    summary = split_text[19]
+    moving_averages = split_text[32]
+
+    i = 0
+    #print("summary: " + str(summary))
+    for r in ranks:
+      if r == summary:
+        break
+      i = i + 1
+
+    result = i
+  else:
+    result = -1
+  #print("result: " + str(result))
+  return result
+
+    #print("text: " + str(text))
+    #print("location: " + str(location))
+    #print("size: " + str(size))
+
+    #element.screenshot("element.png")
+    #img = mpimg.imread("element.png")
+    #imgplot = plt.imshow(img)
+    #plt.show()
 
 def check_marketwatch_price(ticker):
   url = "https://www.marketwatch.com/investing/stock/" + ticker
