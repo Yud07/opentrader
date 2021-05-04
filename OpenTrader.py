@@ -23,7 +23,9 @@ import datetime
 #   + dark pool
 #   + unusual/golden sweeps
 #   + alpha ai
-# stochastic RSI
+# stochastic RSI - captured in tradingview
+# add futures and indices, commodities
+
 
 # for crypto
 # https://s2f.hamal.nl/s2fcharts.html
@@ -37,7 +39,13 @@ import datetime
 def main():
   print("Open Trader 0.01")
 
-  tickers = ["AMZN", "TCEHY", "TSM", "ZM", "LFC", "BABA", "ASML", "MA", "NVDA", "GHVI", "NFLX", "AAPL", "FB","MSFT", "AMD", "GOOGL", "TSLA", "GBTC", "ETHE", "PLTR"]
+  my_portfolio = ["ETHE", "GBTC", "TSLA", "AMZN", "FB", "GOOGL", "ASML", "NVDA", "NFLX", "MSFT", "BABA", "AAPL", "TCEHY", "AMD", "PLTR"]
+  megacaps = ["AAPL", "MSFT", "AMZN", "GOOGL", "FB", "TCEHY", "TSLA", "BABA", "TSM", "V", "JPM", "JNJ", "WMT", "UNH", "LVMUY", "MA", "HD", "NVDA", "BAC", "NSRGY", "DIS", "PG", "PYPL", "RHHBY", "CMCSA", "ASML", "XOM", "VZ", "ADBE", "KO", "MPNGF", "T", "INTC", "ORCL", "PFE", "CSCO", "ABT", "TM", "NKE", "ABBV", "CVX", "PEP", "CRM", "PNGAY", "CICHY", "MRK", "NVS", "WFC", "UPS", "ACN", "BHP"]
+  
+  #indices = ["DOWJ", "SP500", "NASDAQ", "RUT2000", "STOXX 50 Euro", "DAX Germ", "SP/TSX Can", "NIFTY 50 Ind", "BOVESPA Brazil", "NIKKEI Japan", "Shanghai Ind", "Hong Kong Hang Seng", "KOSPI South Korea"]
+  #commodities = ["Gold", "Silver", "Gas", "Copper"]
+  #"10 yr"
+  #"ETH"
   zacks_ranks = ["Error", "Great", "Good", "Neutral", "Bad" , "Terrible"]
   maketwatch_ranks = ["Error", "Sell", "Hold", "Buy", "Strong Buy"]
 
@@ -46,9 +54,11 @@ def main():
   #check_marketwatch_price("AMC")
   #check_marketwatch_daily_change("AMC")
   #check_pretiming("PLTR")
+  #check_tradingview("PLTR", "NYSE")
+  #check_tradingview_sector("GBTC", "miscellaneous")
 
   if True:
-    for t in tickers:      
+    for t in megacaps:      
       print(t + " " + str(check_marketwatch_price(t)) + "\t" + check_marketwatch_daily_change(t))
       if t == "TSM" or t == "BABA" or t == "MA" or t == "PLTR":
         print("TradingView has " + t + "\t" + zacks_ranks[1 + check_tradingview_large_caps(t, "NYSE")])
@@ -68,7 +78,6 @@ def main():
 def check_zacks(ticker):
   zacks_url = "https://www.zacks.com/stock/quote/" + ticker
   headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-
   html_text = requests.get(zacks_url, headers=headers).text
   soup = BeautifulSoup(html_text, 'html.parser')
 
@@ -90,7 +99,6 @@ def check_zacks(ticker):
 def check_marketbeat_analysts(ticker, exchange):
   marketbeat_analysts_url = "http://www.marketbeat.com/stocks/" + exchange + "/" + ticker + "/price-target/"
   headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
-
   html_text = requests.get(marketbeat_analysts_url, headers=headers).text
   soup = BeautifulSoup(html_text, 'html.parser')
 
@@ -154,8 +162,8 @@ def check_marketbeat_analysts(ticker, exchange):
 
 def check_tradingview_large_caps(ticker, exchange):
   url = "https://www.tradingview.com/markets/stocks-usa/market-movers-large-cap/"
-
-  html_text = requests.get(url).text
+  headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+  html_text = requests.get(url, headers=headers).text
   soup = BeautifulSoup(html_text, 'html.parser')
 
   result = -1
@@ -174,10 +182,22 @@ def check_tradingview_large_caps(ticker, exchange):
     #print(str(i) + " " + str(rating))
   return result
 
+def check_tradingview_index(ticker):
+  url = "https://www.tradingview.com/markets/stocks-usa/sectorandindustry-sector/" + sector
+  headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+  html_text = requests.get(url, headers=headers).text
+  soup = BeautifulSoup(html_text, 'html.parser')
+
+  print(soup)
+
+  soup_string = str(soup)
+  technicals_root = soup.find("div", {"id":"technicals-root"})
+
+
 def check_marketwatch_price(ticker):
   url = "https://www.marketwatch.com/investing/stock/" + ticker
-
-  html_text = requests.get(url).text
+  headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+  html_text = requests.get(url, headers=headers).text
   soup = BeautifulSoup(html_text, 'html.parser')
   #print(soup)
 
@@ -190,8 +210,8 @@ def check_marketwatch_price(ticker):
 
 def check_marketwatch_daily_change(ticker):
   url = "https://www.marketwatch.com/investing/stock/" + ticker
-
-  html_text = requests.get(url).text
+  headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+  html_text = requests.get(url, headers=headers).text
   soup = BeautifulSoup(html_text, 'html.parser')
   #print(soup)
 
@@ -204,8 +224,8 @@ def check_marketwatch_daily_change(ticker):
 
 def check_pretiming(ticker):
   url = "https://www.pretiming.com/search?q=" + ticker
-
-  html_text = requests.get(url).text
+  headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+  html_text = requests.get(url, headers=headers).text
   soup = BeautifulSoup(html_text, 'html.parser')
 
   post = soup.find("div", {"class":"post-body entry-content"})
@@ -222,12 +242,15 @@ def check_pretiming(ticker):
         date_delta = datetime.datetime.today().date() - post_date
         # if the post is 3 days old or less
         if(date_delta <= datetime.timedelta(3)):
+          summary_index = post_string.find("Suitable")
+          summary_blob = post_string[summary_index: summary_index + 2500]
+          summary = summary_blob.split(">")[8].split(";")[1].split("<")[0][1:]
           change_index = post_string.find("% Change:")
           substring = post_string[change_index:change_index + 2500]
           #print(substring)
           lower_band_change = substring.split(">")[6].split("<")[0]
           upper_band_change = substring.split(">")[18].split("<")[0]
-          print("Pretiming predicts\t" + lower_band_change + " to " + upper_band_change + " over 10 days")
+          print("Pretiming predicts\t" + summary + " " + lower_band_change + " to " + upper_band_change + " over 10 days")
 
 if __name__ == "__main__":
     main()
