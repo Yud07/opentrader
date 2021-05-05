@@ -1,0 +1,102 @@
+AAPL:
+  exchange: "NASDAQ"
+MSFT:
+  exchange: "NASDAQ"
+AMZN:
+  exchange: "NASDAQ"
+GOOGL:
+  exchange: "NASDAQ"
+FB:
+  exchange: "NASDAQ"
+TCEHY:
+  exchange: "NASDAQ"
+TSLA:
+  exchange: "NASDAQ"
+BABA:
+  exchange: "NYSE"
+TSM:
+  exchange: "NYSE"
+V:
+  exchange: "NYSE"
+JPM:
+  exchange: "NYSE"
+JNJ:
+  exchange: "NYSE"
+WMT:
+  exchange: "NYSE"
+UNH:
+  exchange: "NYSE"
+LVMUY:
+  exchange: "NASDAQ"
+MA:
+  exchange: "NYSE"
+HD:
+  exchange: "NYSE"
+NVDA:
+  exchange: "NASDAQ"
+BAC:
+  exchange: "NYSE"
+NSRGY:
+  exchange: "NASDAQ"
+DIS:
+  exchange: "NYSE"
+PG:
+  exchange: "NYSE"
+PYPL:
+  exchange: "NASDAQ"
+RHHBY:
+  exchange: "NASDAQ"
+CMCSA:
+  exchange: "NASDAQ"
+ASML:
+  exchange: "NASDAQ"
+XOM:
+  exchange: "NYSE"
+VZ:
+  exchange: "NYSE"
+ADBE:
+  exchange: "NASDAQ"
+KO:
+  exchange: "NYSE"
+#MPNGF:
+#  exchange: "NASDAQ"
+T:
+  exchange: "NYSE"
+INTC:
+  exchange: "NASDAQ"
+ORCL:
+  exchange: "NASDAQ"
+PFE:
+  exchange: "NASDAQ"
+CSCO:
+  exchange: "NASDAQ"
+ABT:
+  exchange: "NASDAQ"
+TM:
+  exchange: "NASDAQ"
+NKE:
+  exchange: "NASDAQ"
+ABBV:
+  exchange: "NASDAQ"
+CVX:
+  exchange: "NASDAQ"
+PEP:
+  exchange: "NASDAQ"
+CRM:
+  exchange: "NASDAQ"
+#PNGAY:
+#  exchange: "NASDAQ"
+CICHY:
+  exchange: "NASDAQ"
+MRK:
+  exchange: "NYSE"
+NVS:
+  exchange: "NYSE"
+WFC:
+  exchange: "NYSE"
+UPS:
+  exchange: "NASDAQ"
+ACN:
+  exchange: "NASDAQ"
+BHP:
+  exchange: "NASDAQ"

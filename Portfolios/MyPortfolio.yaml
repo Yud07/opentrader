@@ -1,0 +1,15 @@
+ETHE:
+  exchange: "OTC"
+GBTC:
+  exchange: "OTC"
+TSLA:
+  exchange: "NASDAQ"
+COPX:
+  exchange: "NYSE"
+  tradingview_exchange: "AMEX"
+GOOGL:
+  exchange: "NASDAQ"
+JPM:
+  exchange: "NYSE"
+FB:
+  exchange: "NASDAQ"

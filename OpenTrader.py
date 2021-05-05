@@ -30,6 +30,7 @@ import matplotlib.image as mpimg
 #   + alpha ai
 # stochastic RSI - captured in tradingview
 # add futures and indices, commodities
+# add market vs premarket for marketwatch
 
 
 # for crypto
@@ -42,11 +43,13 @@ import matplotlib.image as mpimg
 
 
 def main():
-  print("Open Trader 0.02")
+  print("Open Trader 0.03")
+  print()
 
   # load yaml portfolio
   #stream = open("Portfolios\MyPortfolio.yaml", "r")
-  stream = open("Portfolios\MegaCaps.yaml", "r")
+  #stream = open("Portfolios\MegaCaps.yaml", "r")
+  stream = open("Portfolios\Indices.yaml", "r")
   dictionary = yaml.load(stream, Loader=yaml.CLoader)
   #print (dictionary.items())
 
@@ -69,7 +72,7 @@ def main():
   #check_tradingview_large_caps(tickers)
   #check_marketwatch_price("AMC")
   #check_marketwatch_daily_change("AMC")
-  #check_pretiming("PLTR")
+  #check_pretiming_by_ticker("PLTR")
   #check_tradingview("PLTR", "NYSE")
   #check_tradingview_sector("GBTC", "miscellaneous")
 
@@ -77,7 +80,12 @@ def main():
   #check_tradingview(browser, "PLTR", "NYSE")
   #check_tradingview(browser, "FB", "NASDAQ")
 
-  if True:
+  #check_pretiming_index(browser, "IXIC", "NASDAQ", "Daily NASDAQ index")
+
+# myportfolio or megacaps
+  if False:
+    check_premarkets()
+    print("---------------------------")
     for t, content in dictionary.items():
       exchange = content['exchange']
       print(t + " " + str(check_marketwatch_price(t)) + "\t" + check_marketwatch_daily_change(t))
@@ -89,8 +97,26 @@ def main():
         tradingview_result = check_tradingview(browser, t, exchange)
       print("TradingView has " + t + "\t" + zacks_ranks[1 + tradingview_result])
       check_marketbeat_analysts(t, exchange)
-      check_pretiming(t)
+      check_pretiming_by_ticker(t)
       print("Zacks thinks " + t + " is\t" + zacks_ranks[check_zacks(t)])
+      print()
+
+# world indices
+  if True:
+    check_premarkets()
+    for t, content in dictionary.items():
+      name = content['name']
+      pretiming_text = content['pretiming']
+      try:
+        exchange = content['exchange']
+        if t == "RUT":
+          tradingview_result = check_tradingview(browser, t, exchange)
+        else:
+          tradingview_result = check_tradingview_index(t, exchange)
+      except:
+        tradingview_result = -1
+      print("TradingView has " + name + "\t" + zacks_ranks[1 + tradingview_result])
+      check_pretiming_index(browser, t, name, pretiming_text)
       print()
 
   browser.close()
@@ -210,6 +236,29 @@ def check_tradingview_large_caps(ticker, exchange):
     #print(str(i) + " " + str(rating))
   return result
 
+def check_tradingview_index(ticker, exchange):
+  url = "https://www.tradingview.com/markets/indices/quotes-major/"
+  headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+  html_text = requests.get(url, headers=headers).text
+  soup = BeautifulSoup(html_text, 'html.parser')
+
+  result = -1
+  row = soup.find("tr", {"class":"tv-data-table__row tv-data-table__stroke tv-screener-table__result-row", "data-symbol":exchange + ":" + ticker})
+  if row is not None:
+    #print(ticker)
+    ranks = ["strong-sell", "sell", "neutral", "buy", "strong-buy"]
+    rating_val = -1
+    i = 0
+    for rank in ranks:
+      rating = row.find("span", {"class":"tv-screener-table__signal tv-screener-table__signal--" + rank})
+      if rating is not None:
+        break
+      i = i + 1
+    result = i
+    #print(str(i) + " " + str(rating))
+  return result
+
+
 def check_tradingview(browser, ticker, exchange):
   browser.get("https://www.tradingview.com/symbols/" + exchange + "-" + ticker + "/technicals/")
   #browser.save_screenshot("screenshot.png")
@@ -256,10 +305,11 @@ def check_tradingview(browser, ticker, exchange):
     #print("location: " + str(location))
     #print("size: " + str(size))
 
-    #element.screenshot("element.png")
-    #img = mpimg.imread("element.png")
-    #imgplot = plt.imshow(img)
-    #plt.show()
+def show_element(element):
+  element.screenshot("element.png")
+  img = mpimg.imread("element.png")
+  imgplot = plt.imshow(img)
+  plt.show()
 
 def check_marketwatch_price(ticker):
   url = "https://www.marketwatch.com/investing/stock/" + ticker
@@ -289,8 +339,11 @@ def check_marketwatch_daily_change(ticker):
 
   return percent_string
 
-def check_pretiming(ticker):
+def check_pretiming_by_ticker(ticker):
   url = "https://www.pretiming.com/search?q=" + ticker
+  check_pretiming(url)
+
+def check_pretiming(url):
   headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
   html_text = requests.get(url, headers=headers).text
   soup = BeautifulSoup(html_text, 'html.parser')
@@ -303,6 +356,7 @@ def check_pretiming(ticker):
       substring = post_string[date_loc_index - 20:date_loc_index + 4]
       split = substring.split(">")
       # old posts had only 1 body
+      #print("post len: " + str(len(split)))
       if len(split) > 1:
         date_string = split[1]
         post_date = datetime.datetime.strptime(date_string, "%b %d, %Y").date()
@@ -318,6 +372,57 @@ def check_pretiming(ticker):
           lower_band_change = substring.split(">")[6].split("<")[0]
           upper_band_change = substring.split(">")[18].split("<")[0]
           print("Pretiming predicts\t" + summary + " " + lower_band_change + " to " + upper_band_change + " over 10 days")
+        else:
+          print("Pretiming is old: " + str(date_delta))
+      else:
+        print("Pretiming post seems old style")
+    else:
+      print("Pretiming seems not 10 day span")  
+
+def check_pretiming_index(browser, t, name, pretiming):
+  browser.get("https://www.pretiming.com/")
+
+  try:
+    element = browser.find_element_by_link_text(pretiming)
+  except:
+    element = None
+  #print (element.text)
+  if element is not None:
+    #show_element(element)
+    url = element.get_attribute("href")
+    #print(url)
+    check_pretiming(url)
+
+def check_premarkets():
+  url = "https://www.cnn.com/business/markets/premarkets"
+  headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+  html_text = requests.get(url, headers=headers).text
+  soup = BeautifulSoup(html_text, 'html.parser')
+
+  spans = soup.find_all("span", {"class":"colored-data-point__ColoredDataPoint-sc-198a1ds-0 ThspH"})
+  
+  #i = 0
+  #for span in spans:
+  #  print(str(i) + ": " + str(span))
+  #  i = i + 1
+
+  dow = str(spans[0]).split(">")[1].split("<")[0]
+  print("DOW " + dow)
+
+  sp = str(spans[1]).split(">")[1].split("<")[0]
+  print("SP500 " + sp)
+
+  nasdaq = str(spans[2]).split(">")[1].split("<")[0]
+  print("NASDAQ " + nasdaq)
+
+  dow_futures = str(spans[4]).split(">")[1].split("<")[0]
+  print("DOW Futures " + dow_futures)
+
+  sp_futures = str(spans[6]).split(">")[1].split("<")[0]
+  print("SP500 Futures " + sp_futures)
+
+  nasdaq_futures = str(spans[8]).split(">")[1].split("<")[0]
+  print("NASDAQ Futures " + nasdaq_futures)
 
 if __name__ == "__main__":
     main()

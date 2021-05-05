@@ -1,0 +1,56 @@
+DJI:
+  name: "DOWJ"
+  exchange: "DJ"
+  pretiming: "Daily Dowjones index"
+SPX:
+  name: "SP500"
+  exchange: "SP"
+  pretiming: "Daily S&P 500 index"
+IXIC:
+  name: "NASDAQ"
+  exchange: "TVC"
+  pretiming: "Daily NASDAQ index"
+RUT:
+  name: "RUT2000"
+  exchange: "TVC"
+  pretiming: "Daily Russell 2000 index"
+SX5E:
+  name: "Europe"
+  exchange: "TVC"
+  pretiming: "Daily STOXX 50 Euro index"
+DAX:
+  name: "Germany"
+  exchange: "XETR"
+  pretiming: "Daily DAX Germany index"
+TSX:
+  name: "Canada"
+  exchange: "TSX"
+  pretiming: "Daily S&P/TSX Canada index"
+NIFTY:
+  name: "India"
+  exchange: "NSE"
+  pretiming: "Daily NIFTY 50 india index"
+IBOV:
+  name: "Brazil"
+  exchange: "BMFBOVESPA"
+  pretiming: "Daily BOVESPA Brazil index"
+NI255:
+  name: "Japan"
+  exchange: "TVC"
+  pretiming: "Daily NIKKEI 225 Japan index"
+SHCOMP:
+  name: "Shanghai"
+  exchange: "TVC"
+  pretiming: "Daily Shanghai index"
+HSI:
+  name: "Hong Kong"
+  exchange: "HSI"
+  pretiming: "Daily Hong Kong Hang Seng index"
+KOSPI:
+  name: "Korea"
+  exchange: "TVC"
+  pretiming: "Daily KOSPI South Korea index"
+
+#commodities = ["Gold", "Silver", "Gas", "Copper"]
+#"10 yr"
+#"ETH"
