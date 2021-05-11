@@ -39,11 +39,11 @@ NI255:
   exchange: "TVC"
   pretiming: "Daily NIKKEI 225 Japan index"
 SHCOMP:
-  name: "Shanghai"
+  name: "Shnghi"
   exchange: "TVC"
   pretiming: "Daily Shanghai index"
 HSI:
-  name: "Hong Kong"
+  name: "HK"
   exchange: "HSI"
   pretiming: "Daily Hong Kong Hang Seng index"
 KOSPI:

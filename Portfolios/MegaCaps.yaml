@@ -9,7 +9,8 @@ GOOGL:
 FB:
   exchange: "NASDAQ"
 TCEHY:
-  exchange: "NASDAQ"
+  exchange: "OTCMKTS"
+  tradingview_exchange: "OTC"
 TSLA:
   exchange: "NASDAQ"
 BABA:
@@ -27,7 +28,8 @@ WMT:
 UNH:
   exchange: "NYSE"
 LVMUY:
-  exchange: "NASDAQ"
+  exchange: "OTCMKTS"
+  tradingview_exchange: "OTC"
 MA:
   exchange: "NYSE"
 HD:
@@ -37,7 +39,8 @@ NVDA:
 BAC:
   exchange: "NYSE"
 NSRGY:
-  exchange: "NASDAQ"
+  exchange: "OTCMKTS"
+  tradingview_exchange: "OTC"
 DIS:
   exchange: "NYSE"
 PG:
@@ -45,7 +48,8 @@ PG:
 PYPL:
   exchange: "NASDAQ"
 RHHBY:
-  exchange: "NASDAQ"
+  exchange: "OTCMKTS"
+  tradingview_exchange: "OTC"
 CMCSA:
   exchange: "NASDAQ"
 ASML:
@@ -58,36 +62,39 @@ ADBE:
   exchange: "NASDAQ"
 KO:
   exchange: "NYSE"
-#MPNGF:
-#  exchange: "NASDAQ"
+MPNGF:
+  exchange: "OTCMKTS"
+  tradingview_exchange: "OTC"
 T:
   exchange: "NYSE"
 INTC:
   exchange: "NASDAQ"
 ORCL:
-  exchange: "NASDAQ"
+  exchange: "NYSE"
 PFE:
-  exchange: "NASDAQ"
+  exchange: "NYSE"
 CSCO:
   exchange: "NASDAQ"
 ABT:
-  exchange: "NASDAQ"
+  exchange: "NYSE"
 TM:
-  exchange: "NASDAQ"
+  exchange: "NYSE"
 NKE:
-  exchange: "NASDAQ"
+  exchange: "NYSE"
 ABBV:
-  exchange: "NASDAQ"
+  exchange: "NYSE"
 CVX:
-  exchange: "NASDAQ"
+  exchange: "NYSE"
 PEP:
   exchange: "NASDAQ"
 CRM:
-  exchange: "NASDAQ"
-#PNGAY:
-#  exchange: "NASDAQ"
+  exchange: "NYSE"
+PNGAY:
+  exchange: "OTCMKTS"
+  tradingview_exchange: "OTC"
 CICHY:
-  exchange: "NASDAQ"
+  exchange: "OTCMKTS"
+  tradingview_exchange: "OTC"
 MRK:
   exchange: "NYSE"
 NVS:
@@ -95,8 +102,96 @@ NVS:
 WFC:
   exchange: "NYSE"
 UPS:
-  exchange: "NASDAQ"
+  exchange: "NYSE"
 ACN:
-  exchange: "NASDAQ"
+  exchange: "NYSE"
 BHP:
+  exchange: "NYSE"
+  tradingview_exchange: "ASX"
+LLY:
+  exchange: "NYSE"
+DHR:
+  exchange: "NYSEAMERICAN"
+  tradingview_exchange: "NYSE"
+TMO:
+  exchange: "NYSE"
+AVGO:
   exchange: "NASDAQ"
+MCD:
+  exchange: "NYSE"
+SBRCY:
+  exchange: "OTCMKTS"
+  tradingview_exchange: "OTC"
+NVO:
+  exchange: "NYSE"
+ACGBY:
+  exchange: "OTCMKTS"
+  tradingview_exchange: "OTC"
+MDT:
+  exchange: "NYSE"
+TMUS:
+  exchange: "NASDAQ"
+COST:
+  exchange: "NASDAQ"
+TXN:
+  exchange: "NASDAQ"
+SAP:
+  exchange: "NYSE"
+  tradingview_exchange: "XETR"
+MS:
+  exchange: "NYSE"
+HON:
+  exchange: "NYSE"
+SFTBF:
+  exchange: "OTCMKTS"
+  tradingview_exchange: "OTC"
+TTM:
+  exchange: "NYSE"
+UL:
+  exchange: "NYSE"
+LIN:
+  exchange: "NYSE"
+C:
+  exchange: "NYSE"
+AAGIY:
+  exchange: "OTCMKTS"
+  tradingview_exchange: "OTC"
+PM:
+  exchange: "NYSE"
+PDD:
+  exchange: "NASDAQ"
+UNP:
+  exchange: "NYSE"
+LOW:
+  exchange: "NYSE"
+RYDAF:
+  exchange: "OTCMKTS"
+  tradingview_exchange: "OTC"
+RIO:
+  exchange: "NYSE"
+VWAGY:
+  exchange: "OTCMKTS"
+  tradingview_exchange: "OTC"
+NEE:
+  exchange: "NYSE"
+BUD:
+  exchange: "NYSE"
+QCOM:
+  exchange: "NASDAQ"
+AMGN:
+  exchange: "NASDAQ"
+BMY:
+  exchange: "NYSE"
+AZN:
+  exchange: "NASDAQ"
+RY:
+  exchange: "NYSE"
+BACHY:
+  exchange: "OTCMKTS"
+  tradingview_exchange: "OTC"
+SIEGY:
+  exchange: "OTCMKTS"
+  tradingview_exchange: "OTC"
+CHDRY:
+  exchange: "OTCMKTS"
+  tradingview_exchange: "OTC"

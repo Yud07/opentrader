@@ -7,9 +7,13 @@ TSLA:
 COPX:
   exchange: "NYSE"
   tradingview_exchange: "AMEX"
+  alternate_ticker: "FCX"
+  alternate_exchange: "NYSE"
 GOOGL:
   exchange: "NASDAQ"
 JPM:
   exchange: "NYSE"
-FB:
-  exchange: "NASDAQ"
+WFC:
+  exchange: "NYSE"
+PLTR:
+  exchange: "NYSE"

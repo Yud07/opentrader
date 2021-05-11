@@ -1,4 +1,4 @@
-1.Anaconda Prompt
-2. Create env
-	a. conda create -n OpenTrader
-	b. conda activate OpenTrader
+3. install selenium
+4. install firefox
+5. download geckodriver https://github.com/mozilla/geckodriver/releases
+6. add geckodriver to PATH
