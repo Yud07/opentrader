@@ -1,0 +1,70 @@
+1620763776976	geckodriver	INFO	Listening on 127.0.0.1:52404
+1620763780137	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\myudy\\AppData\\Local\\Temp\\rust_mozprofile4qkN3v"
+*** You are running in headless mode.
+1620763780829	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1620763782768	Marionette	INFO	Listening on port 52412
+1620763783305	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js, line 65: uncaught exception: TagError: adsbygoogle.push() error: Only one AdSense head tag supported per page. The second tag is ignored.
+1620763791453	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/VUb54HSrcJlfDt76-zYSNvHYPadoqD5ysjWH2aTGPz8.js line 1 > eval line 4932 > eval line 1 > eval, line 1: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript warning: https://pagead2.googlesyndication.com/bg/DyQI0nSy6BUFz1wbhNnw1YMoJJCDSr_iJxDmlzQsBeQ.js line 1 > eval line 4756 > eval, line 1: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript error: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js, line 65: uncaught exception: TagError: adsbygoogle.push() error: Only one AdSense head tag supported per page. The second tag is ignored.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/DyQI0nSy6BUFz1wbhNnw1YMoJJCDSr_iJxDmlzQsBeQ.js line 1 > eval line 2066 > eval, line 1: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript error: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js, line 65: uncaught exception: TagError: adsbygoogle.push() error: Only one AdSense head tag supported per page. The second tag is ignored.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/DyQI0nSy6BUFz1wbhNnw1YMoJJCDSr_iJxDmlzQsBeQ.js line 1 > eval line 799 > eval, line 1: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript error: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js, line 65: uncaught exception: TagError: adsbygoogle.push() error: Only one AdSense head tag supported per page. The second tag is ignored.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/DyQI0nSy6BUFz1wbhNnw1YMoJJCDSr_iJxDmlzQsBeQ.js line 1 > eval line 2775 > eval, line 1: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript error: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js, line 65: uncaught exception: TagError: adsbygoogle.push() error: Only one AdSense head tag supported per page. The second tag is ignored.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/DyQI0nSy6BUFz1wbhNnw1YMoJJCDSr_iJxDmlzQsBeQ.js line 1 > eval line 3780 > eval, line 1: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript error: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js, line 65: uncaught exception: TagError: adsbygoogle.push() error: Only one AdSense head tag supported per page. The second tag is ignored.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/DyQI0nSy6BUFz1wbhNnw1YMoJJCDSr_iJxDmlzQsBeQ.js line 1 > eval line 3858 > eval, line 1: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript error: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js, line 65: uncaught exception: TagError: adsbygoogle.push() error: Only one AdSense head tag supported per page. The second tag is ignored.
+1620763873259	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/DyQI0nSy6BUFz1wbhNnw1YMoJJCDSr_iJxDmlzQsBeQ.js line 1 > eval line 3158 > eval, line 1: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript error: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js, line 65: uncaught exception: TagError: adsbygoogle.push() error: Only one AdSense head tag supported per page. The second tag is ignored.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/DyQI0nSy6BUFz1wbhNnw1YMoJJCDSr_iJxDmlzQsBeQ.js line 1 > eval line 1912 > eval, line 1: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript error: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js, line 65: uncaught exception: TagError: adsbygoogle.push() error: Only one AdSense head tag supported per page. The second tag is ignored.
+1620763897405	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/DyQI0nSy6BUFz1wbhNnw1YMoJJCDSr_iJxDmlzQsBeQ.js line 1 > eval line 7026 > eval line 1 > eval, line 1: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript error: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js, line 65: uncaught exception: TagError: adsbygoogle.push() error: Only one AdSense head tag supported per page. The second tag is ignored.
+1620763908570	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/DyQI0nSy6BUFz1wbhNnw1YMoJJCDSr_iJxDmlzQsBeQ.js line 1 > eval line 57 > eval line 1 > eval, line 1: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+JavaScript error: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js, line 65: uncaught exception: TagError: adsbygoogle.push() error: Only one AdSense head tag supported per page. The second tag is ignored.
+JavaScript error: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js, line 65: uncaught exception: TagError: adsbygoogle.push() error: Only one AdSense head tag supported per page. The second tag is ignored.
+JavaScript error: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js, line 65: uncaught exception: TagError: adsbygoogle.push() error: Only one AdSense head tag supported per page. The second tag is ignored.
+1620763942626	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/DyQI0nSy6BUFz1wbhNnw1YMoJJCDSr_iJxDmlzQsBeQ.js line 1 > eval line 4537 > eval, line 1: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+1620763948162	Marionette	INFO	Stopped listening on port 52412
+1620763978507	geckodriver	INFO	Listening on 127.0.0.1:52647
+1620763981591	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--headless" "-foreground" "-no-remote" "-profile" "C:\\Users\\myudy\\AppData\\Local\\Temp\\rust_mozprofileIlRw7r"
+*** You are running in headless mode.
+1620763982472	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1620763984250	Marionette	INFO	Listening on port 52655
+1620763984322	Marionette	WARN	TLS certificate errors will be ignored for this session
+1620763990560	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript warning: https://www.cnn.com/business/markets/premarkets, line 1: unreachable code after return statement
+JavaScript warning: https://www.cnn.com/business/markets/premarkets, line 1: unreachable code after return statement
+JavaScript warning: https://www.cnn.com/business/markets/premarkets, line 1: unreachable code after return statement
+JavaScript warning: https://www.cnn.com/business/markets/premarkets, line 1: unreachable code after return statement
+JavaScript warning: https://www.cnn.com/business/markets/premarkets, line 1: unreachable code after return statement
+JavaScript warning: https://www.cnn.com/business/markets/premarkets, line 1: unreachable code after return statement
+JavaScript warning: https://www.cnn.com/business/markets/premarkets, line 1: unreachable code after return statement
+JavaScript warning: https://www.cnn.com/business/markets/premarkets, line 1: unreachable code after return statement
+JavaScript warning: https://www.cnn.com/business/markets/premarkets, line 1: unreachable code after return statement
+JavaScript warning: https://pagead2.googlesyndication.com/bg/DyQI0nSy6BUFz1wbhNnw1YMoJJCDSr_iJxDmlzQsBeQ.js line 1 > eval line 462 > eval, line 1: Failed to create WebGL context: WebGL creation failed: 
+* Can't use WebGL in headless mode (https://bugzil.la/1375585).
+1620764228321	Marionette	INFO	Stopped listening on port 52655

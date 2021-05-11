@@ -49,14 +49,39 @@ from index_manager import IndexManager
 # https://digitalik.net/btc/
 
 
-def main():
+def main(argv):
   print("Open Trader 0.04")
   print()
 
-  #run_my_portfolio()
-  #run_mega_cap_portfolio()
-  #run_tradingview_errors()
-  run_indices()
+  input_file = ''
+
+  try:
+    opts, args = getopt.getopt(argv, "hipmw", ["infile=", "--myportfolio", "--megacaps"])
+  except getopt.GetoptError:
+    print("open_trader.py -i <input_file>")
+    sys.exit(2)
+
+  manager = None
+  for opt, arg in opts:
+    if opt == "-h":
+      print("open_trader.py -i <input_file>")
+      sys.exit()
+    elif opt in ["-i", "--infile"]:
+      input_file = arg
+      manager = StockManager(input_file)
+    elif opt in ["-p", "--myportfolio"]:
+      input_file = "Portfolios\MyPortfolio.yaml"
+      manager = StockManager(input_file)
+    elif opt in ["-m", "--megacaps"]:
+      input_file = "Portfolios\MegaCaps.yaml"
+      manager = StockManager(input_file)
+    elif opt in ["-w", "--indices"]:
+      input_file = "Portfolios\Indices.yaml"
+      manager = IndexManager(input_file)
+
+  if manager is not None:
+    manager.run_battery()
+    manager.close_browser()
 
   #stream = open("Portfolios\MyPortfolio.yaml", "r")
   #stream = open("Portfolios\MegaCaps.yaml", "r")
@@ -66,25 +91,5 @@ def main():
   #"10 yr"
   #"ETH"
 
-def run_my_portfolio():
-  stock_manager = StockManager("Portfolios\MyPortfolio.yaml")
-  stock_manager.run_battery()
-  stock_manager.close_browser()
-
-def run_mega_cap_portfolio():
-  stock_manager = StockManager("Portfolios\MegaCaps.yaml")
-  stock_manager.run_battery()
-  stock_manager.close_browser()
-
-def run_tradingview_errors():
-  stock_manager = StockManager("Portfolios\TradingviewErrors.yaml")
-  stock_manager.run_battery()
-  stock_manager.close_browser()
-
-def run_indices():
-  index_manager = IndexManager("Portfolios\Indices.yaml")
-  index_manager.run_battery()
-  index_manager.close_browser()
-
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:])

@@ -2,18 +2,16 @@ ETHE:
   exchange: "OTC"
 GBTC:
   exchange: "OTC"
-TSLA:
-  exchange: "NASDAQ"
 COPX:
   exchange: "NYSE"
   tradingview_exchange: "AMEX"
   alternate_ticker: "FCX"
   alternate_exchange: "NYSE"
-GOOGL:
-  exchange: "NASDAQ"
 JPM:
   exchange: "NYSE"
 WFC:
   exchange: "NYSE"
+TSLA:
+  exchange: "NASDAQ"
 PLTR:
   exchange: "NYSE"
